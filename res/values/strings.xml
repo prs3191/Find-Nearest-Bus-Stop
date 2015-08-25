@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Bus!</string>
+    <string name="app_name">Bus</string>
+    <string name="Destination">Destination</string>
+    <string name="Source">Source</string>
+    <string name="ShowRoute">Show Route</string>
+    <string name="Next">Next</string>
+    <string name="Show">Show</string>
+    <string name="Distance">Distance</string>
+    <string name="NearestBusStop">NearestBusStop</string>
+    <string name="ShowStages">ShowStages</string>
+
+</resources>
