@@ -31,7 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Gps extends Activity {
+public class Gps extends Activity implements LocationListener {
 
 	//protected Button retrieveLocationButton;
 	double latitude,longitude,final_lat,final_long,rb_lat,rb_long,user_lat,user_long;
@@ -44,7 +44,9 @@ public class Gps extends Activity {
 	ArrayList<String> arl=new ArrayList<String>();
 	int i=0,j=0,flag=0;
 	private Location location;
-
+	
+	private LocationManager locationManager=null;
+	private LocationListener locationListener=null;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -59,7 +61,12 @@ public class Gps extends Activity {
 		// currentloc_rb[0]=text_rb;
 		selected_loc=(TextView)this.findViewById(R.id.editText2);
 		selected_loc.setText(text_rb);
-
+		
+		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		System.out.println("Location_Man:"+locationManager);
+		
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
+		
 		final Button button = (Button) findViewById(R.id.button1);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -105,13 +112,13 @@ public class Gps extends Activity {
 		try
 		{   
 			loc=(TextView)this.findViewById(R.id.editText1);
-			
+
 			/* Use the LocationManager class to obtain GPS locations */
 			// Acquire a reference to the system Location Manager
-			LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+			//LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
 			// Define a listener that responds to location updates
-			LocationListener locationListener = new LocationListener()  {
+			/*LocationListener locationListener = new LocationListener()  {
 				public void onLocationChanged(Location location) {
 					// Called when a new location is found by the network location provider.
 					
@@ -131,15 +138,17 @@ public class Gps extends Activity {
 				public void onProviderEnabled(String provider) {}
 
 				public void onProviderDisabled(String provider) {}
-			};
+			};*/
 
 			// Register the listener with the Location Manager to receive location updates
-			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1000, locationListener);
+		//	locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
 
-			latitude=(double) locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude();
-			longitude=(double) locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude();
+		//	latitude=(double) locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude();
+		//	longitude=(double) locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude();
 		}
-		catch(Exception e){}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 
 		//Reverse Geocoding to get Address from User's current location/co-ordinates(Latitude/Longitude)
 		try
@@ -166,7 +175,9 @@ public class Gps extends Activity {
 				loc.setText(temp2.get("formatted_address").toString());
 
 			}
-			catch(Exception e){loc.setText("user location json exception...");}
+			catch(Exception e){
+				loc.setText("user location json exception...");
+				}
 
 
 		}
@@ -365,6 +376,35 @@ public class Gps extends Activity {
 			final_long=Double.valueOf(longitudes[1]);
 
 		}
+	}
+
+	public void onLocationChanged(Location location) {
+		// TODO Auto-generated method stub
+
+		latitude =  (double) location.getLatitude();
+		longitude= (double) location.getLongitude();
+		latitudes[0]=Double.toString(latitude);
+		longitudes[0]=Double.toString(longitude);
+		user_lat=latitude;
+		user_long=longitude;
+		
+		System.out.println("Onlocationchanged:lat:"+user_lat+"  Long:"+user_long);
+		
+	}
+
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		System.out.println("GPS is enabled");
+	}
+
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		System.out.println("GPS is Disabled");
 	}
 
 

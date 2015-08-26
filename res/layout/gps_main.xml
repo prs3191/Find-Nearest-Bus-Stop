@@ -3,6 +3,7 @@
     android:id="@+id/mainlayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#3F51B5"
     android:orientation="vertical" >
 
     <Button
