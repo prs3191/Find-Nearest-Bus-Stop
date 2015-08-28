@@ -8,11 +8,11 @@ import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.http.HttpEntity;
+/*import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.BufferedHttpEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;*/
 import org.json.JSONArray;
 import org.json.JSONObject;
 

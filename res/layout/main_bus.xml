@@ -1,39 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#3F51B5"
     android:orientation="vertical" >
-
+<!-- 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Source" />
-
+        android:text="@string/Source" 
+        />
+ -->
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView1"
+        style="android:Widget.Material.AutoCompleteTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Enter Source" 
-        android:completionThreshold="1"/>
-
+        android:completionThreshold="1"
+        android:singleLine="true"
+        android:hint="Enter Source" 
+        android:layout_centerInParent="true"
+        />
+<!-- 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Destination" />
-
+        android:text="@string/Destination" 
+        />
+ -->
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView2"
+        style="android:Widget.Material.AutoCompleteTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Enter Destination"
-        android:completionThreshold="1" />
+        android:completionThreshold="1"
+        android:hint="Enter Destination" 
+        android:layout_below="@+id/autoCompleteTextView1"/>
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Next" />
+        android:text="@string/Next"
+        android:layout_below="@+id/autoCompleteTextView2"
+        android:layout_alignParentRight="true" />
 
-</LinearLayout>
+</RelativeLayout>

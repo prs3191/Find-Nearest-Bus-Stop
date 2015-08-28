@@ -8,8 +8,8 @@
     <string name="ShowRoute">Show Route</string>
     <string name="Next">Next</string>
     <string name="Show">Show</string>
-    <string name="Distance">Distance</string>
+    <string name="Distance">Calc Distance</string>
     <string name="NearestBusStop">NearestBusStop</string>
-    <string name="ShowStages">ShowStages</string>
+    <string name="ShowStages">Show Stages</string>
 
 </resources>
